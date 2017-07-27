@@ -1,0 +1,110 @@
+<script type="text/x-red" data-template-name="watson-retrieve-rank-credentials-v2">
+    <div class="form-row">
+        <label for="node-config-input-username"><i class="fa fa-user"></i> Username</label>
+        <input type="text" id="node-config-input-username" placeholder="Username">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-password"><i class="fa fa-key"></i> Password</label>
+        <input type="password" id="node-config-input-password" placeholder="Password">
+    </div>
+</script>
+
+<script type="text/javascript">
+(function() {
+    RED.nodes.registerType('watson-retrieve-rank-credentials-v2',{
+        category: 'config',
+        defaults: {
+            username:{value: ''},
+            password:{value: ''}
+        },
+        label: function() {
+            return 'Retrieve and Rank Credentials Versao 2';
+        }
+    });
+})();
+</script>
+
+
+<script type="text/x-red" data-template-name="watson-retrieve-rank-search-and-rank">
+    <div id="credentials-check" class="form-row">
+        <div class="form-tips">
+            <i class="fa fa-question-circle"></i><b> Please wait: </b> Checking for bound service credentials...
+        </div>
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row servicecreds">
+        <label for="node-input-bluemix"><i class="fa fa-user"></i> Service Credentials</label>
+        <input type="text" id="node-input-servicecreds">
+    </div>
+    <div class="form-row mode clusterid">
+        <label for="node-input-clusterid"><i class="fa fa-tag"></i> Cluster ID</label>
+        <input type="text" id="node-input-clusterid" placeholder="Cluster ID">
+    </div>
+    <div class="form-row mode collectionname">
+        <label for="node-input-collectionname"><i class="fa fa-tag"></i> Collection Name</label>
+        <input type="text" id="node-input-collectionname" placeholder="Collection Name">
+    </div>
+    <div class="form-row mode searchmode" id="rr-searchmode">
+        <label for="node-input-searchmode"><i class="fa fa-tag"></i> Search mode</label>
+        <select id="node-input-searchmode">
+          <option value="search">Search</option>
+          <option value="search-and-rank">Search and Rank</option>
+        </select>
+    </div>
+    <div class="form-row mode rankerid" id="rr-rankerid">
+        <label for="node-input-rankerid"><i class="fa fa-tag"></i> Ranker ID</label>
+        <input type="text" id="node-input-rankerid" placeholder="Ranker ID">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="watson-retrieve-rank-search-and-rank">
+    <p>New Retrieve and Rank Node and getting the body part onf the response.</code>.</p>
+</script>
+
+<script type="text/javascript">
+    (function() {
+        RED.nodes.registerType('watson-retrieve-rank-search-and-rank', {
+            category: 'Watson Refined',
+            defaults: {
+                name: {value: ''},
+                servicecreds: {value: '', type: 'watson-retrieve-rank-credentials-v2', required: false},
+                clusterid: {value: ''},
+                collectionname: {value: ''},
+                searchmode: {value: 'search-and-rank'},
+                rankerid: {value: ''}
+            },
+            color: 'rgb(102, 178, 255)',
+            inputs: 1,
+            outputs: 1,
+            icon: 'RetrieveRank.png',
+            paletteLabel: 'R&R Search and Rank Full Response',
+            label: function() {
+                return this.name || 'R&R Search and Rank Full Response';
+            },
+            labelStyle: function() {
+                return this.name ? 'node_label_italic' : '';
+            },
+            oneditprepare: function() {
+                $.getJSON('watson-retrieve-and-rank/vcap/').done(function (service) {
+                    $('.servicecreds').toggle(!service);
+                }).fail(function () {
+                    $('.servicecreds').show();
+                }).always(function () {
+                    $('#credentials-check').hide();
+                })
+                function toggleRankerInput() {
+                  if($('#rr-searchmode select').val() === 'search') {
+                    $('#rr-rankerid').hide()
+                  } else {
+                    $('#rr-rankerid').show()
+                  }
+                }
+                $('#rr-searchmode select').change(toggleRankerInput)
+                toggleRankerInput()
+            }
+        });
+    })();
+</script>
