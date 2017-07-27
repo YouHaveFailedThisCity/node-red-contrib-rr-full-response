@@ -33,7 +33,7 @@
 ],
     "node-red": {
     "nodes": {
-       "watson-retrieve-and-rank-v1": "services/retrieve_and_rank/v1.js"
+       "node-red-contrib-retrieve-rank-full-response-v1": "services/retrieve_and_rank/v1.js"
     }
   }
 }
