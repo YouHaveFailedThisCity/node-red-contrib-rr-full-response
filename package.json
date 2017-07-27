@@ -1,5 +1,5 @@
 {
-  "name": "node-red-contrib-retrieve-rank-response",
+  "name": "node-red-contrib-retrieve-rank-full-response",
   "version": "1.0.0",
   "description": "No para personalizar a resposta padrao do servico Retrieve and Rank",
   "main": "index.js",
@@ -22,6 +22,10 @@
     "is-docx": "^0.0.3",
     "stream-to-array" : "^2.3.0"
 },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YouHaveFailedThisCity/node-red-contrib-rr-full-response"
+  },
   "keywords": [
     "node-red",
     "bluemix",
