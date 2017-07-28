@@ -1,8 +1,8 @@
 {
   "name": "node-red-contrib-retrieve-rank-full-response",
   "version": "1.1.0",
-  "description": "No para personalizar a resposta padrao do servico Retrieve and Rank",
-  "main": "index.js",
+  "description": "A refined node for you to get the "Body" part of Retrieve and Rank Response",
+  "main": "v1.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,7 +16,7 @@
     "request": "~2.53.0",
     "temp": "^0.8.3",
     "qs": "6.x",
-	  "image-type": "^2.0.2",
+	"image-type": "^2.0.2",
     "watson-developer-cloud": "^2.32.1",
     "kuromoji": "^0.0.5",
     "is-docx": "^0.0.3",
@@ -27,13 +27,11 @@
     "url": "https://github.com/YouHaveFailedThisCity/node-red-contrib-rr-full-response"
   },
   "keywords": [
-    "node-red",
-    "bluemix",
-    "watson"
+    "node-red"
 ],
     "node-red": {
     "nodes": {
-       "node-red-contrib-retrieve-rank-full-response-v1": "services/retrieve_and_rank/v1.js"
+       "rr-full-response": "services/retrieve_and_rank/v1.js"
     }
   }
 }
