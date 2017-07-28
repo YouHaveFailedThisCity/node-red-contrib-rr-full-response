@@ -61,7 +61,7 @@ module.exports = function (RED) {
 }
 
  RED.nodes.registerType('watson-retrieve-rank-credentials-v2', serviceCredentialsConfigurationNode);
- RED.nodes.registerType('watson-retrieve-rank-search-and-rank', searchAndRankNode, {
+ RED.nodes.registerType('rr-full-response', searchAndRankNode, {
     credentials: {
       username: {type:'text'},
       password: {type:'password'}
