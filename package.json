@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-retrieve-rank-full-response",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A refined node for you to get the 'Body' part of Retrieve and Rank Response",
   "main": "v1.js",
   "scripts": {
